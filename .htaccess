@@ -1,3 +1,1 @@
-RewriteEngine on
-RewriteRule ^KenSine_(.*)FXBY(.*)$ LoginVCL.php [L]
-RewriteRule ^KenSine_(.*)GRN(.*)$ LoginGRN.php [L]
+cc
