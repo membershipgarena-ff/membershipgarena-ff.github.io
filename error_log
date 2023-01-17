@@ -1,0 +1,2 @@
+[12-Dec-2022 16:30:34 Asia/Ho_Chi_Minh] PHP Warning:  file_get_contents(chuongdzvipromax.txt): failed to open stream: No such file or directory in /home/adminuyt/public_html/LoginVCL.php on line 29
+[12-Dec-2022 16:34:18 Asia/Ho_Chi_Minh] PHP Warning:  file_get_contents(admin/tan.txt): failed to open stream: No such file or directory in /home/adminuyt/public_html/LoginVCL.php on line 29

